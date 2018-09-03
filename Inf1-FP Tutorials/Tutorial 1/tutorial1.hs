@@ -18,7 +18,7 @@ import Control.Monad (guard)
 
 -- List-comprehension version
 halveEvens :: [Int] -> [Int]
-halveEvens xs = [x `div` 2 | x <- xs, x `mod` 2 == 0]
+halveEvens xs = undefined
 
 
 -- This is for testing only. Do not try to understand this (yet).
@@ -28,14 +28,14 @@ halveEvensReference = (>>= \x -> guard (x `mod` 2 == 0) >>= \_ -> return $ x `di
 
 -- -- Mutual test
 prop_halveEvens :: [Int] -> Bool
-prop_halveEvens xs = halveEvens xs == halveEvensReference xs
+prop_halveEvens xs = undefined
 
 
 -- 2. inRange
 
 -- List-comprehension version
 inRange :: Int -> Int -> [Int] -> [Int]
-inRange lo hi xs = [x | x <- xs, lo <= x && x <= hi]
+inRange lo hi xs = undefined
 
 
 
@@ -43,21 +43,18 @@ inRange lo hi xs = [x | x <- xs, lo <= x && x <= hi]
 
 -- List-comprehension version
 countPositives :: [Int] -> Int
-countPositives list = sum [1 | x <- list, x > 0]
+countPositives list = undefined
 
 
 -- 4. pennypincher
 
 -- List-comprehension version.
-discount :: Int -> Int
-discount price = round (0.9 * fromIntegral price)
-
 pennypincher :: [Int] -> Int
-pennypincher prices = sum [discount price | price <- prices, discount price <= 19900]
+pennypincher prices = undefined
 
 -- -- And the test itself
 prop_pennypincher :: [Int] -> Bool
-prop_pennypincher xs = pennypincher xs <= sum [x | x <- xs, x > 0]
+prop_pennypincher xs = undefined
 
 
 
@@ -65,61 +62,50 @@ prop_pennypincher xs = pennypincher xs <= sum [x | x <- xs, x > 0]
 
 -- List-comprehension version
 multDigits :: String -> Int
-multDigits str = product [digitToInt c | c <- str, isDigit c]
+multDigits str = undefined
 
 countDigits :: String -> Int
-countDigits str = sum [1 | c <- str, isDigit c]
+countDigits str = undefined
 
 prop_multDigits :: String -> Bool
-prop_multDigits xs = multDigits xs <= 9 ^ countDigits xs
+prop_multDigits xs = undefined
 
 
 -- 6. capitalise
 
 -- List-comprehension version
 capitalise :: String -> String
-capitalise [] = []
-capitalise (c:cs) = toUpper c : [toLower c | c <- cs] 
+capitalise s = undefined
 
 
 -- 7. title
 
 lowercase :: String -> String
-lowercase xs = [toLower x | x <- xs]
-
-capitaliseLong :: String -> String
-capitaliseLong word | length word >= 4 = capitalise word
-                    | otherwise       = lowercase word
+lowercase xs = undefined
 
 -- List-comprehension version
 title :: [String] -> [String]
-title [] = []
-title (word:words) = capitalise word : [capitaliseLong word | word <- words]
+title _ = undefined
 
 
 -- 8. signs
 
 sign :: Int -> Char
-sign i | i == 0             = '0'
-       | 1 <= i && i <= 9   = '+'
-       | -9 <= i && i <= -1 = '-'
-       | otherwise          = error "Entered value not within valid ranges!"
+sign i = undefined
 
 signs :: [Int] -> String
-signs xs = [sign x | x <- xs, (-9) <= x && x <= 9]
+signs xs = undefined
 
 -- 9. score
 
 score :: Char -> Int
-score x = counter (isAlpha x) + counter (isUpper x) + counter (x `elem` "AEIOUaeiou")
-        where counter x = if x then 1 else 0
-
+score x  = undefined
 
 totalScore :: String -> Int
-totalScore xs = product [score x | x <- xs, isAlpha x]
+totalScore xs = undefined
 
 prop_totalScore_positive :: String -> Bool
-prop_totalScore_positive xs = totalScore xs >= 1
+prop_totalScore_positive xs = undefined
 
 
 -- Optional Material
@@ -128,7 +114,7 @@ prop_totalScore_positive xs = totalScore xs >= 1
 
 -- List-comprehension version
 crosswordFind :: Char -> Int -> Int -> [String] -> [String]
-crosswordFind letter pos len words = [word | word <- words, length word == len, 0 <= pos, pos <= len, word !! pos == letter]
+crosswordFind letter pos len words = undefined
 
 
 -- 9. search
@@ -136,11 +122,11 @@ crosswordFind letter pos len words = [word | word <- words, length word == len, 
 -- List-comprehension version
 
 search :: String -> Char -> [Int]
-search str goal = [pos | (ch, pos) <- zip str [0..], ch == goal]
+search str goal = undefined
 
 -- Depending on the property you want to test, you might want to change the type signature
 prop_search :: String -> Char -> Bool
-prop_search str goal = length [ 42 | c <- str, c == goal] == length (search str goal)
+prop_search str goal = undefined
 
 
 -- 10. contains
